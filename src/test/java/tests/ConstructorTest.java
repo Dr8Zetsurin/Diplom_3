@@ -8,9 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.JavascriptExecutor;
-
 import java.time.Duration;
-
 import static org.junit.Assert.assertTrue;
 
 public class ConstructorTest extends BaseTest {
@@ -20,12 +18,8 @@ public class ConstructorTest extends BaseTest {
     @Description("Проверка перехода к разделу 'Булки' в конструкторе")
     public void switchToBunsTest() {
         constructorPage.open();
-        WebElement bunsSection = driver.findElement(By.xpath("//span[text()='Булки']"));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", bunsSection);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", bunsSection);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        assertTrue(wait.until(ExpectedConditions.attributeContains(
-            By.xpath("//span[text()='Булки']/parent::div"), "class", "current")));
+        constructorPage.clickBunsSection();
+        assertTrue(constructorPage.isBunsSectionActive());
     }
 
     @Test
@@ -34,9 +28,7 @@ public class ConstructorTest extends BaseTest {
     public void switchToSaucesTest() {
         constructorPage.open();
         constructorPage.clickSaucesSection();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        assertTrue(wait.until(ExpectedConditions.attributeContains(
-            By.xpath("//span[text()='Соусы']/parent::div"), "class", "current")));
+        assertTrue(constructorPage.isSaucesSectionActive());
     }
 
     @Test
@@ -45,8 +37,6 @@ public class ConstructorTest extends BaseTest {
     public void switchToFillingsTest() {
         constructorPage.open();
         constructorPage.clickFillingsSection();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        assertTrue(wait.until(ExpectedConditions.attributeContains(
-            By.xpath("//span[text()='Начинки']/parent::div"), "class", "current")));
+        assertTrue(constructorPage.isFillingsSectionActive());
     }
 } 

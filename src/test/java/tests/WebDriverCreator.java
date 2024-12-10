@@ -16,8 +16,7 @@ public class WebDriverCreator {
     private static int currentBrowserIndex = 0;
 
     public static WebDriver createWebDriver() {
-        String browserType = browsers.get(currentBrowserIndex);
-        currentBrowserIndex = (currentBrowserIndex + 1) % browsers.size();
+        String browserType = System.getProperty("browser", "chrome");
         
         switch (browserType.toLowerCase()) {
             case "chrome":
@@ -32,20 +31,14 @@ public class WebDriverCreator {
     private static WebDriver createChromeDriver() {
         System.setProperty("webdriver.chrome.driver", System.getenv("CHROME_DRIVER_PATH"));
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
-        options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--no-sandbox");
-        options.addArguments("--window-size=1920,1080");
+        // options.addArguments("--headless");
         return new ChromeDriver(options);
     }
 
     private static WebDriver createYandexDriver() {
         System.setProperty("webdriver.chrome.driver", System.getenv("YANDEX_DRIVER_PATH"));
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
-        options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--no-sandbox");
-        options.addArguments("--window-size=1920,1080");
+        // options.addArguments("--headless");
         return new ChromeDriver(options);
     }
 }

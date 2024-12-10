@@ -15,8 +15,8 @@ public class BaseTest {
     protected ForgotPasswordPage forgotPasswordPage;
     
     protected String email;
-    protected final String PASSWORD = "password123";
-    protected final String NAME = "TestUser";
+    protected final static String PASSWORD = "password123";
+    protected final static String NAME = "TestUser";
     protected String accessToken;
 
     @Before
